@@ -76,7 +76,7 @@ class DataTransformation:
         try:
             categorical_features = [0,1,7,10,11]
             preprocessor = ColumnTransformer(transformers=[
-                ('ohe', OneHotEncoder(sparse_output=False, drop='first'), categorical_features )
+                ('ohe', OneHotEncoder(drop='first'), categorical_features )
             ], remainder= 'passthrough')
 
             logging.info('Preprocessor created')
