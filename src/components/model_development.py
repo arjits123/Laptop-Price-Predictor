@@ -43,7 +43,6 @@ class ModelTrainer:
             model_report = {}
             for i in range(len(models)):
                 model = list(models.values())[i]
-                # print(model)
                 model.fit(X_train,y_train)
                 Y_pred = model.predict(X_test)
                 testing_score = r2_score(y_test, Y_pred)
@@ -54,7 +53,6 @@ class ModelTrainer:
 
             # Best model score
             best_model_score = max(sorted(model_report.values())) # eg = 88
-            print(best_model_score)
 
             #Best model name - gives the key of dictionary
             model_keys_list = list(model_report.keys())

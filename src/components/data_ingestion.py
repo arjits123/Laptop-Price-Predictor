@@ -6,8 +6,8 @@ from exception import CustomException
 from logger import logging
 from dataclasses import dataclass
 
-from data_transformation import DataTransformation
-from model_development import ModelTrainer
+# from data_transformation import DataTransformation
+# from model_development import ModelTrainer
 
 import pandas as pd
 import numpy as np
@@ -40,21 +40,40 @@ class DataIngestion:
 
         except Exception as e:
             raise CustomException(e,sys)
+        
 
-if __name__ == "__main__":
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+# if __name__ == "__main__":
     
-    # Data Ingestion
-    data_ingestion = DataIngestion()
-    raw_data_path = data_ingestion.initiate_data_ingestion()
+#     # Data Ingestion
+#     data_ingestion = DataIngestion()
+#     raw_data_path = data_ingestion.initiate_data_ingestion()
 
-    #Data Transformation
-    data_transformation = DataTransformation()
-    cleaned_df = data_transformation.clean_data(data_path = raw_data_path)
-    # print(cleaned_df.head())
-    X_train, X_test, y_train, y_test = data_transformation.initiate_data_transformation(final_data = cleaned_df)
-    # print(X_test.shape)
+#     #Data Transformation
+#     data_transformation = DataTransformation()
+#     cleaned_df = data_transformation.clean_data(data_path = raw_data_path)
+#     # print(cleaned_df.head())
+#     X_train, X_test, y_train, y_test = data_transformation.initiate_data_transformation(final_data = cleaned_df)
+#     # print(X_test.shape)
 
-    #Model trainer 
-    model_trainer = ModelTrainer()
-    print(model_trainer.initiate_model_trainer(X_train, X_test, y_train, y_test))
+#     #Model trainer 
+#     model_trainer = ModelTrainer()
+#     print(model_trainer.initiate_model_trainer(X_train, X_test, y_train, y_test))
 
