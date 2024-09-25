@@ -2,8 +2,6 @@
 from flask import Flask, render_template, request # type: ignore
 import pandas as pd # type: ignore
 import numpy as np # type: ignore
-import sys
-from sklearn.preprocessing import StandardScaler # type: ignore
 from src.pipelines.prediction import CustomData, PredictionPipeline
 
 #creat flask application

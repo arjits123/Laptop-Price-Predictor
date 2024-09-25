@@ -61,6 +61,7 @@
                 <div class="col">
                     <label for="company" class="form-label">Select Company</label>
                     <select class="selectpicker form-control" id="company" name="company" required="1">
+                        <option value="" disabled selected>Select a company</option>
                         {% for comp in companies %}
                             <option value = "{{comp}}" >{{ comp }}</option>
                         {% endfor %}
@@ -69,7 +70,7 @@
                 <div class="col">
                     <label for="type_name" class="form-label">Type</label>
                     <select class="selectpicker form-control" id="type_name" name="type_name" required="1">
-                        <!-- <option value="#"></option> -->
+                        <option value="" disabled selected>Select laptop type</option>
                         {% for name in typeNames %}
                             <option value = "{{name}}" >{{ name }}</option>
                         {% endfor %}
@@ -81,7 +82,7 @@
                 <div class="col">
                     <label for="ram" class="form-label">RAM (GB)</label>
                     <select class="selectpicker form-control" id="ram" name="ram" required="1">
-                        <!-- <option value="#"></option> -->
+                        <option value="#" disabled selected>Select RAM</option>
                         {% for r in rams %}
                             <option value = "{{r}}" >{{ r }}</option>
                         {% endfor %}
@@ -89,7 +90,7 @@
                 </div>
                 <div class="col">
                     <label for="weight" class="form-label">Weight (kg)</label>
-                    <input type="number" class="form-control" id="weight" name="weight" step="0.01" required = "1">
+                    <input type="number" class="form-control" id="weight" name="weight" step="0.01" required = "1" placeholder="Enter weight">
                 </div>
             </div>
 
@@ -97,6 +98,7 @@
                 <div class="col">
                     <label for="touchScreen" class="form-label">Touch Screen</label>
                     <select class="form-control" id="touchScreen" name="touchScreen" required="1">
+                        <option value="" disabled selected>Yes or No</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
@@ -104,6 +106,7 @@
                 <div class="col">
                     <label for="ips" class="form-label">IPS Display</label>
                     <select class="form-control" id="ips" name="ips" required="1">
+                        <option value="" disabled selected>Yes or No</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
@@ -113,12 +116,12 @@
             <div class="row mb-3">
                 <div class="col">
                     <label for="screenSize" class="form-label">Screen Size (inches)</label>
-                    <input type="number" class="form-control" id="screenSize" name="screenSize" step="0.1" required="1">
+                    <input type="number" class="form-control" id="screenSize" name="screenSize" step="0.1" required="1" placeholder="Enter screen size">
                 </div>
                 <div class="col">
                     <label for="screenResolution" class="form-label">Screen Resolution</label>
                     <select class="selectpicker form-control" id="screenResolution" name="screenResolution" required="1">
-                        <!-- <option value="#"></option> -->
+                        <option value="" disabled selected>Select Screen resolution</option>
                         {% for s in screen_res %}
                             <option value = "{{s}}" >{{ s }}</option>
                         {% endfor %}
@@ -130,7 +133,7 @@
                 <div class="col">
                     <label for="cpu_brand" class="form-label">CPU Brand</label>
                     <select class="selectpicker form-control" id="cpu_brand" name="cpu_brand" required="1">
-                        <!-- <option value="#"></option> -->
+                        <<option value="" disabled selected>Select CPU </option>
                         {% for c in cpus %}
                             <option value = "{{c}}" >{{ c }}</option>
                         {% endfor %}
@@ -139,7 +142,7 @@
                 <div class="col">
                     <label for="hdd" class="form-label">HDD (GB)</label>
                     <select class="selectpicker form-control" id="hdd" name="hdd" required="1">
-                        <!-- <option value="#"></option> -->
+                        <option value="" disabled selected>Choose HDD</option>
                         {% for h in hdds %}
                             <option value = "{{h}}" >{{ h }}</option>
                         {% endfor %}
@@ -151,7 +154,7 @@
                 <div class="col">
                     <label for="hdd" class="form-label">SSD (GB)</label>
                     <select class="selectpicker form-control" id="ssd" name="ssd" required="1">
-                        <!-- <option value="#"></option> -->
+                        <option value="" disabled selected>Choose SSD</option>
                         {% for ss in ssds %}
                             <option value = "{{ss}}" >{{ ss }}</option>
                         {% endfor %}
@@ -160,7 +163,7 @@
                 <div class="col">
                     <label for="gpu_brand" class="form-label">GPU Brand</label>
                     <select class="selectpicker form-control" id="gpu_brand" name="gpu_brand" required="1">
-                        <!-- <option value="#"></option> -->
+                        <option value="" disabled selected>Select GPU</option>
                         {% for g in gpus %}
                             <option value = "{{g}}" >{{ g }}</option>
                         {% endfor %}
@@ -172,7 +175,7 @@
                 <div class="col">
                     <label for="os" class="form-label">Operating System</label>
                     <select class="selectpicker form-control" id="os" name="os" required="1">
-                        <!-- <option value="#"></option> -->
+                        <option value="" disabled selected>Select OS</option>
                         {% for o in operating_system %}
                             <option value = "{{o}}" >{{ o }}</option>
                         {% endfor %}
