@@ -91,7 +91,7 @@ class DataTransformation:
 
             #split the dataset into X and y variables
             X = df.drop(columns = ['Price'], axis = 1)
-            y = df['Price']
+            y = np.log(df['Price'])
             logging.info('X and y created')
 
             #train test split
