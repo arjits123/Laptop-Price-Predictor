@@ -1,9 +1,6 @@
 pandas
 numpy
-streamlit
 flask
-seaborn
-matplotlib
 scikit-learn
 dill
 xgboost
