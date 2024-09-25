@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Price Predictor</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+
+        body {
+            background-image: url('https://cdn.thewirecutter.com/wp-content/media/2024/07/laptopstopicpage-2048px-3685-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp'); /* Replace with the path to your image */
+            background-size: cover; /* Ensures the image covers the entire background */
+            background-position: center; /* Centers the image */
+            color: #000000; /* Dark text color */
+        }
+        body::before {
+            content: ""; /* Required for pseudo-element */
+            position: absolute; /* Positioning for full cover */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+            z-index: 1; /* Ensure it sits above the background image */
+        }
+        
+        .container {
+            position: relative; /* To ensure content sits above the overlay */
+            z-index: 2; /* Ensure it is above the overlay */
+        }
+        h2 {
+            color: #ffffff; /* Blue color for the heading */
+        }
+        label {
+            color: #ffffff; /* Slightly darker gray for form labels */
+        }
+        .form-control {
+            background-color: #ffffff; /* White background for input fields */
+            color: #333333; /* Dark text for input fields */
+            border: 1px solid #cccccc; /* Light gray borders */
+        }
+        .btn-primary {
+            background-color: #007bff; /* Blue button */
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2 class="text-center">Laptop Price Predictor</h2>
+        <form action="{{ url_for('predict_datapoint')}}" method="POST" >
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="company" class="form-label">Select Company</label>
+                    <select class="selectpicker form-control" id="company" name="company" required="1">
+                        {% for comp in companies %}
+                            <option value = "{{comp}}" >{{ comp }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="type_name" class="form-label">Type</label>
+                    <select class="selectpicker form-control" id="type_name" name="type_name" required="1">
+                        <!-- <option value="#"></option> -->
+                        {% for name in typeNames %}
+                            <option value = "{{name}}" >{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="ram" class="form-label">RAM (GB)</label>
+                    <select class="selectpicker form-control" id="ram" name="ram" required="1">
+                        <!-- <option value="#"></option> -->
+                        {% for r in rams %}
+                            <option value = "{{r}}" >{{ r }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="weight" class="form-label">Weight (kg)</label>
+                    <input type="number" class="form-control" id="weight" name="weight" step="0.01" required = "1">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="touchScreen" class="form-label">Touch Screen</label>
+                    <select class="form-control" id="touchScreen" name="touchScreen" required="1">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="ips" class="form-label">IPS Display</label>
+                    <select class="form-control" id="ips" name="ips" required="1">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="screenSize" class="form-label">Screen Size (inches)</label>
+                    <input type="number" class="form-control" id="screenSize" name="screenSize" step="0.1" required="1">
+                </div>
+                <div class="col">
+                    <label for="screenResolution" class="form-label">Screen Resolution</label>
+                    <select class="selectpicker form-control" id="screenResolution" name="screenResolution" required="1">
+                        <!-- <option value="#"></option> -->
+                        {% for s in screen_res %}
+                            <option value = "{{s}}" >{{ s }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="cpu_brand" class="form-label">CPU Brand</label>
+                    <select class="selectpicker form-control" id="cpu_brand" name="cpu_brand" required="1">
+                        <!-- <option value="#"></option> -->
+                        {% for c in cpus %}
+                            <option value = "{{c}}" >{{ c }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="hdd" class="form-label">HDD (GB)</label>
+                    <select class="selectpicker form-control" id="hdd" name="hdd" required="1">
+                        <!-- <option value="#"></option> -->
+                        {% for h in hdds %}
+                            <option value = "{{h}}" >{{ h }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="hdd" class="form-label">SSD (GB)</label>
+                    <select class="selectpicker form-control" id="ssd" name="ssd" required="1">
+                        <!-- <option value="#"></option> -->
+                        {% for ss in ssds %}
+                            <option value = "{{ss}}" >{{ ss }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="gpu_brand" class="form-label">GPU Brand</label>
+                    <select class="selectpicker form-control" id="gpu_brand" name="gpu_brand" required="1">
+                        <!-- <option value="#"></option> -->
+                        {% for g in gpus %}
+                            <option value = "{{g}}" >{{ g }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="os" class="form-label">Operating System</label>
+                    <select class="selectpicker form-control" id="os" name="os" required="1">
+                        <!-- <option value="#"></option> -->
+                        {% for o in operating_system %}
+                            <option value = "{{o}}" >{{ o }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Predict Price : {{result}}</button>
+        </form>
+
+        <!-- <div class="row">
+            <div class="col-12" style="text-align: center">
+                <h4><span id="prediction"></span>Predicted price of house is : {{result}}</h4>
+            </div>
+        </div> -->
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

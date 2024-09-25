@@ -8,8 +8,8 @@ from utils import load_obj
 
 
 class CustomData:
-    def __init__(self, company, type_name, Ram, weight, touchScreen, ips, screenSize, screenResolution, 
-                 cpu_brand, HDD, SSD, GPU_brand, os):
+    def __init__(self, company:str, type_name:str, Ram:int, weight:float, touchScreen, ips:str, screenSize:float, 
+                 screenResolution, cpu_brand:str, HDD:int, SSD:int, GPU_brand:str, os:str):
         self.company = company
         self.type_name = type_name
         self.Ram = Ram
@@ -26,16 +26,37 @@ class CustomData:
 
     def get_data_as_df(self):
         try:
+            # For touch screen
+            touch = self.touchScreen
+            if touch == 'Yes':
+                touch = 1
+            else:
+                touch = 0
+
+            #For ips
+            ips= self.ips
+            if ips == 'Yes':
+                ips = 1
+            else:
+                ips = 0
+            
+            #calculate PPi
+            X_res = float(self.screenResolution.split('x')[0])
+            y_res = float(self.screenResolution.split('x')[1])
+            screen_size = float(self.screenSize)
+            ppi = ((X_res**2) + (y_res**2))**0.5/screen_size
+
             #Create a dictionary to create a df
             custom_data_dictionary = {
                 'Company' : [self.company],
                 'TypeName': [self.type_name],
                 'Ram': [self.Ram],
                 'Weight': [self.weight],
-                'Touchscreen': [self.touchScreen],
-                'Ips': [self.ips],
-                'screen_size': [self.screenSize],
-                'screen_resolution': [self.screenResolution],
+                'Touchscreen': [touch],
+                'Ips': [ips],
+                'ppi': [ppi],
+                # 'screen_size': [self.screenSize],
+                # 'screen_resolution': [self.screenResolution],
                 'Cpu brand': [self.cpu_brand],
                 'HDD': [self.HDD],
                 'SSD': [self.SSD],

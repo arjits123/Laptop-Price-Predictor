@@ -66,6 +66,7 @@ class DataTransformation:
             df.drop(columns=['OpSys'],inplace=True)
 
             logging.info('Data cleaning completed')
+            df.to_csv(self.transformation_config.cleaned_data_obj_path)
             
             return df
 
